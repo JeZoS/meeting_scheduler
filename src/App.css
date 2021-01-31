@@ -1,4 +1,5 @@
 .App {
+  position: relative;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -102,4 +103,18 @@ button:focus {
 }
 button:hover {
   transform: scale(0.98);
+}
+
+.notification {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.notification h3 {
+  margin-right: 20px;
+  padding: 3px 15px;
+  border-radius: 15px;
+  color: white;
+  border-bottom-right-radius: 0;
 }

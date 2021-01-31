@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { meetReducer } from "./reducers/meetingReducers";
+import { meetReducer, userReducer } from "./reducers/meetingReducers";
 
 const reducer = combineReducers({
-  dates: meetReducer,
+  DatesBooked: meetReducer,
+  users: userReducer,
 });
 
 const initialState = {};
