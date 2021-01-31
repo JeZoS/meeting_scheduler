@@ -93,6 +93,7 @@ function App() {
     setError(false);
     setShow(true);
     setUserName("");
+    slotHandler("");
     setDesc("");
     setTimeout(() => {
       setShow(false);
@@ -172,7 +173,7 @@ function App() {
             key={el}
             style={{
               borderColor:
-                el === selectSlot ? "crimson" : slot[el] ? "crimson" : "grey",
+                el === selectSlot ? "green" : slot[el] ? "crimson" : "grey",
               color:
                 el === selectSlot ? "crimson" : slot[el] ? "crimson" : "grey",
             }}
