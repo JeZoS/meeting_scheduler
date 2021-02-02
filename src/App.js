@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+
+  //
+  //states
   const [show, setShow] = useState(false);
   const [eror, setError] = useState(false);
   const [message, setMessage] = useState("Meeting Scheduled");
@@ -15,29 +18,11 @@ function App() {
   const [userName, setUserName] = useState("");
   const [desc, setDesc] = useState("");
 
+  //
   //time slots
-  const [slot, setSlot] = useState({
-    "10:00_AM": false,
-    "10:30_AM": false,
-    "11:00_AM": false,
-    "11:30_AM": false,
-    "12:00_PM": false,
-    "12:30_PM": false,
-    "01:00_PM": false,
-    "01:30_PM": false,
-    "02:00_PM": false,
-    "02:30_PM": false,
-    "03:00_PM": false,
-    "03:30_PM": false,
-    "04:00_PM": false,
-    "04:30_PM": false,
-    "05:00_PM": false,
-    "05:30_PM": false,
-    "06:00_PM": false,
-    "06:30_PM": false,
-    "07:00_PM": false,
-  });
+  const [slot, setSlot] = useState({});
 
+  //
   //for marking meetings already booked on selected date
   const DatesBooked = useSelector((state) => state.DatesBooked);
   const { dates: current } = DatesBooked;
@@ -50,6 +35,7 @@ function App() {
     }
   }
 
+  //
   //button Click SET MEETING
   const submitHandler = () => {
     if (
@@ -69,37 +55,38 @@ function App() {
       setTimeout(() => {
         setShow(false);
       }, 1500);
-
       return;
+    } else {
+      dispatch({
+        type: "USER_MEET",
+        payload: {
+          username: userName,
+          time: selectSlot,
+          desc: desc,
+          mtype: drop,
+          dte: selected,
+        },
+      });
+      dispatch({
+        type: "ADD_MEET",
+        payload: {
+          date: selected.getDate(),
+          data: selectSlot,
+        },
+      });
+      setMessage("Meeting Added");
+      setError(false);
+      setShow(true);
+      setUserName("");
+      slotHandler("");
+      setDesc("");
+      setTimeout(() => {
+        setShow(false);
+      }, 1500);
     }
-    dispatch({
-      type: "USER_MEET",
-      payload: {
-        username: userName,
-        time: selectSlot,
-        desc: desc,
-        mtype: drop,
-        dte: selected,
-      },
-    });
-    dispatch({
-      type: "ADD_MEET",
-      payload: {
-        date: selected.getDate(),
-        data: selectSlot,
-      },
-    });
-    setMessage("Meeting Added");
-    setError(false);
-    setShow(true);
-    setUserName("");
-    slotHandler("");
-    setDesc("");
-    setTimeout(() => {
-      setShow(false);
-    }, 1500);
   };
 
+  //
   //initalizing all slots and selected slot as false and None respectively
   useEffect(() => {
     setSlot({
@@ -126,6 +113,7 @@ function App() {
     slotHandler("");
   }, [dispatch, selected]);
 
+  //
   //for DropDown
   const handeler = (e) => setDrop(e.target.value);
 

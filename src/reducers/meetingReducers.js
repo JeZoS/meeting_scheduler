@@ -1,3 +1,5 @@
+//
+//
 export const meetReducer = (state = { dates: {} }, action) => {
   switch (action.type) {
     case "ADD_MEET":
@@ -10,6 +12,8 @@ export const meetReducer = (state = { dates: {} }, action) => {
   }
 };
 
+//
+//
 export const userReducer = (state = { users: {} }, action) => {
   switch (action.type) {
     case "USER_MEET":
@@ -25,14 +29,3 @@ export const userReducer = (state = { users: {} }, action) => {
       return { ...state };
   }
 };
-// bookedslot[
-//     {
-//      date: 1
-//      slot:[
-//             {
-//             time:10.00am
-//             booked:false
-//             }
-//         ]
-//     }
-// ]
